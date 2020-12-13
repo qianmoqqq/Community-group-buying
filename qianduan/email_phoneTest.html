@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<script type="text/javascript">
+    var code=null;
+    function check() {
+        var code1 = login.code.value;
+        alert("check"+code1+":"+code);
+        if(code==null){
+            return false;
+        }
+        if(code==code1){
+            login.submit();
+            return true;
+        }else
+            return false;
+    }
+    function sendMail() {
+        alert("sendMail");
+        var username = login.username.value;
+        alert(username);
+        $(document).ready(function() {
+                $.post("/demo1/api/mail/sendMail",
+                    {"username":username},
+                    function (data) {
+                        if (data != null) {
+                            code = data;
+                            alert("sendMail发送成功:" + code);
+                        } else
+                            alert("sendMail发送失败");
+                    });
+
+        });
+    }
+    function sendSMS() {
+//        alert("sendSMS");
+        var username = login.username.value;
+        $(document).ready(function () {
+            $.post("/demo1/api/sendSMS",
+                {"username": username},
+                function (data) {
+                    /*<![CDATA[*/
+                    if (data!=null) {
+                        code=data;
+                        alert("sendSMS发送成功:");
+                    }else
+                        alert("sendSMS发送失败");
+                    /*]]>*/
+                });
+        });
+    }
+
+</script>
+<body>
+账号
+<form name="login" enctype="multipart/form-data" method="post" th:action="@{/login}"  onsubmit="return check()">
+    <div>
+        <input id="username" type="text" name="username"/>
+        <input id="code" type="text" name="code"/>
+        <button style="width:150px;height:25px" type="button" onclick="sendMail()">发送邮箱验证码</button>
+        <button style="width:150px;height:25px" type="button" onclick="sendSMS()">发送短信验证码</button>
+
+    </div>
+    <input type="submit" value="登录" />
+</form>
+</body>
+
+
+</html>

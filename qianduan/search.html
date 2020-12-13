@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+</head>
+<style>
+    .top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+
+    }
+    .d
+    {
+        width: 1250px;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 130px;
+    }
+    .d2
+    {
+        margin-left: 200px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        height:140px ;
+        float: left;
+        text-align: center;
+    }
+    .d3
+    {
+        margin-right: 200px;
+        margin-left: 200px;
+        float: left;
+        height: 50px;
+        width: 1100px;
+        text-align: center;
+    }
+    .d4
+    {
+        margin-right: 200px;
+        margin-left: 200px;
+        border:1px solid #ff0000;
+        float: left;
+        width: 1100px;
+        margin-top: 30px;
+    }
+    .d6
+    {
+        display: block;
+        height: 350px;
+        width: 200px;
+        float: left;
+        text-align: center;
+
+    }
+    .d6:hover
+    {
+        border:1px solid red;
+    }
+    .d7
+    {
+        margin-top: 0px;
+        float: left;
+        width: 200px;
+        height: 50px;
+        color: black;
+    }
+    .d8
+    {
+        text-align: right;
+        margin-top: 0px;
+        float: left;
+        width: 200px;
+        height: 40px;
+        color: #ff6630;
+        font-size: 25px;
+    }
+
+    .t1
+    {
+        margin-right: 300px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        height: 110px;
+        float: right;
+        width: 100px;
+        text-align: center;
+        padding-top: 30px;
+    }
+    .t2
+    {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        height: 110px;
+        float: right;
+        width: 500px;
+        text-align: left;
+        padding-top: 30px;
+
+    }
+    .t3
+    {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        height: 140px;
+        float: right;
+        width: 50px;
+        text-align: center;
+
+
+    }
+    .p
+    {
+        padding-top: 45px;
+    }
+    .submit
+    {
+        width:100px;
+        height: 80px;
+        background-color: #ff6630;
+        color: #ffffff;
+        font-size: 16px;
+        border:1px solid #ff0000;
+    }
+    .submit:hover
+    {
+        background-color: #ffffff;
+        color: #ff6630;
+    }
+    .submit1
+    {
+        width:100px;
+        height: 50px;
+        background-color: #ff6630;
+        color: #ffffff;
+        font-size: 16px;
+        border:1px solid #ff0000;
+    }
+    .submit1:hover
+    {
+        background-color: #ffffff;
+        color: #ff6630;
+    }
+    .text1
+    {
+        width: 150px;
+        border:1px solid #9a9a9a;
+        height: 44px;
+    }
+    .text1:hover
+    {
+        border-color: #ff6630;
+    }
+    .serch
+    {
+        width:498px;
+        height: 76px;
+        border:1px solid #8b8b8b;
+        font-size: 18px;
+    }
+    .serch:hover
+    {
+        border-color: #ff6630;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #b6b6b6;
+    }
+    .l
+    {
+        float: right;
+    }
+    .l a
+    {
+        display: block;
+        color: #000000;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .l a:hover
+    {
+        background-color: black;
+        color: white;
+    }
+    .table
+    {
+        margin:0px auto;
+        border-spacing: 50px 20px;
+        height: 400px;
+        width: 1102px;
+    }
+    #main{
+        width:1440px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+</style>
+<body>
+<div id="main">
+<div class="top">
+    <img  src="\demo1\tp\LOGO.jpg"  width="1250"height="180" />
+</div>
+<div class="d">
+    <ul>
+        <li class="l"><a href="#">联系客服</a></li>
+        <li class="l"><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+        <li class="l"><a href="/demo1/favor/select">收藏夹</a></li>
+        <li class="l"><a href="/demo1/cart/find">购物车</a></li>
+        <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+        <li class="l"><a href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+        <li class="l"><a href="/demo1/main1">首页</a></li>
+    </ul>
+</div>
+<form action="/demo1/goods/select_By_Group?type1=0" method="post">
+    <div class="t1">
+        <input type="submit" class="submit" value="搜索">
+    </div>
+<div class="t2">
+    <input type="text" class="serch" name="searchmessage"th:placeholder="${searchmessage}" placeholder="搜索" th:value="${searchmessage}">
+</div>
+<div class="d2">
+    <img src="\demo1\tp\LOGO2.png" width="200" height="140"/>
+</div>
+<div class="t3">
+    <img src="\demo1\tp\serch.svg" class="p"  width="50" height="50">
+</div>
+<div class="d3">
+    <input type="button"  class="submit1" name="g_rating" value="评价"/>
+    <input type="button"  class="submit1" name="g_"value="价格"/>
+    <input Oninput="this.value=this.value.replace(/[^\d\.\d{0,2}]/g,'')"  class="text1" type="text" name="min"/>
+    -
+    <input Oninput="this.value=this.value.replace(/[^\d\.\d{0,2}]/g,'')"  class="text1" type="text" name="max"/>
+    <input type="submit" class="submit1" value="确定"/>
+
+</div>
+</form>
+<div class="d4">
+        <table class="table"><tr >
+            <th:block th:each="goods,goodsstatus:${goodslist}">
+                <p th:remove="tag" th:utext="${(goodsstatus.index+1)%4==1 ? '&lt;tr&gt;':''}"/>
+            <td><a th:href="@{'/goods/select_by_id?g_id='+${goods.g_id}}">
+                <div class="d6"><img th:src="@{${goods.g_pic}}" width="200" height="250">
+                <div class="d7"th:text="${goods.g_name}"></div>
+                <div class="d8"th:text="${goods.g_lowprice}"></div></div></a></td>
+                <p th:remove="tag" th:utext="${(goodsstatus.index+1)%4==0 ? '&lt;tr&gt;':''}"/>
+                </th:block>
+        </tr>
+        </table>
+</div>
+
+</div>
+</body>
+</html>

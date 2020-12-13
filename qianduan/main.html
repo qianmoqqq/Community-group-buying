@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>首页</title>
+</head>
+<style>
+  .top
+  {
+    margin-left: 70px;
+    margin-right: 70px;
+    height: 180px;
+
+  }
+  photo
+  {
+    text-align: left;
+    float:left;
+    width: 24000px;
+    animation: switch 5s ease-out infinite;
+  }
+  .d
+  {
+    margin-top: 0px;
+    margin-left: 70px;
+    margin-right: 70px;
+    width: 1250px;
+  }
+  .d2
+  {
+    margin-left: 145px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height:140px ;
+    float: left;
+    text-align: center;
+  }
+  .d3
+  {
+    margin-left: 145px;
+    width: 300px;
+    height: 400px;
+    float: left;
+    text-align: center;
+  }
+  .d4
+  {
+    margin-right: 115px;
+    height: 400px;
+    width: 800px;
+    float: left;
+    overflow: hidden;
+  }
+  .d5
+  {
+    margin-right: 145px;
+    margin-left: 145px;
+    height: 400px;
+    width: 1102px;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+    background-color: #fff4f4;
+  }
+  .d6
+  {
+    display: block;
+    height: 350px;
+    width: 200px;
+    float: left;
+    text-align: center;
+
+  }
+  .d6:hover
+  {
+    border:1px solid red;
+  }
+  .d7
+  {
+    margin-top: 0px;
+    float: left;
+    width: 200px;
+    height: 50px;
+    color: black;
+  }
+  .d8
+  {
+    text-align: right;
+    margin-top: 0px;
+    float: left;
+    width: 200px;
+    height: 40px;
+    color: #ff6630;
+    font-size: 25px;
+  }
+  .t1
+  {
+    margin-right: 245px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 110px;
+    float: right;
+    width: 100px;
+    text-align: center;
+    padding-top: 30px;
+  }
+  .t2
+  {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 110px;
+    float: right;
+    width: 500px;
+    text-align: left;
+    padding-top: 30px;
+
+  }
+  .t3
+  {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 140px;
+    float: right;
+    width: 50px;
+    text-align: center;
+
+
+  }
+  .p
+  {
+    padding-top: 45px;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #b6b6b6;
+  }
+  .submit
+  {
+    width:100px;
+    height: 80px;
+    background-color: #ff6630;
+    color: #ffffff;
+    font-size: 16px;
+    border:1px solid #ff0000;
+  }
+  .submit:hover
+  {
+    background-color: #ffffff;
+    color: #ff6630;
+  }
+  .serch
+  {
+    width:498px;
+    height: 78px;
+    border:1px solid #8b8b8b;
+    font-size: 18px;
+  }
+  .serch:hover
+  {
+    border-color: #ff6630;
+  }
+  .l
+  {
+    float: right;
+  }
+  .l a
+  {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .l a:hover
+  {
+    background-color: black;
+    color: white;
+  }
+  @keyframes switch
+  {
+    0%, 25% {
+      margin-left: 0;
+    }
+    35%, 60% {
+      margin-left: -804px;
+    }
+    70%, 100% {
+      margin-left: -1608px;
+    }
+  }
+  .ul
+  {
+    list-style-type: none;
+    background-color: #cbcbcb;
+    height: 400px;
+  }
+  .l1
+  {
+    background-color: #cbcbcb;
+  }
+  .l1 a,.dropbtn
+  {
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .l1 a, .dropdown:hover
+  {
+    background-color: #ff6630;
+    color: white;
+  }
+  .dropbtn:hover
+  {
+    color: white;
+  }
+  .dropdown
+  {
+    display: inline-block;
+    width: 300px;
+  }
+  .dropdown-content
+  {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  .dropdown-content a
+  {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  .dropdown:hover .dropdown-content
+  {
+    display: block;
+  }
+  .table
+  {
+    margin:0px auto;
+    border-spacing: 80px 20px;
+    height: 400px;
+    width: 1102px;
+  }
+  #main{
+    width:1440px;
+    height: 900px;
+    MARGIN-RIGHT:auto;
+    MARGIN-LEFT:auto;
+  }
+
+</style>
+<div id="main">
+<body>
+<div class="top">
+<img  src="\demo1\tp\LOGO.jpg"  width="1250"height="180" />
+</div>
+<div class="d">
+  <ul>
+    <li class="l"><a class="active" href="#home">联系客服</a></li>
+    <li class="l"><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+    <li class="l"><a href="/demo1/favor/select">收藏夹</a></li>
+    <li class="l"><a href="/demo1/cart/find">购物车</a></li>
+    <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+    <li class="l"><a href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+  </ul>
+</div>
+<form action="/demo1/goods/select_By_Group?type1=0" method="post">
+<div class="t1">
+  <input type="submit" class="submit" value="搜索">
+</div>
+  <div class="t2">
+    <input type="text" class="serch" id="searchmessage" name="searchmessage" placeholder="搜索" >
+  </div>
+</form>
+
+<div class="d2">
+    <img src="\demo1\tp\LOGO2.png" width="200" height="140"/>
+  </div>
+  <div class="t3">
+
+   <img src="\demo1\tp\serch.svg" class="p"  width="50" height="50">
+  </div>
+<div class="d3">
+  <ul class="ul">
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=1" class="dropbtn">水果</a>
+
+    </div>
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=2" class="dropbtn">蔬菜</a>
+
+    </div>
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=3" class="dropbtn">肉类</a>
+
+    </div>
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=4" class="dropbtn">海鲜</a>
+
+    </div>
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=5" class="dropbtn">蛋类</a>
+
+    </div>
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=6" class="dropbtn">图书</a>
+
+    </div>
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=7" class="dropbtn">日用品</a>
+
+    </div>
+    <div class="dropdown">
+      <a href="/demo1/goods/select_By_Group?type1=0" class="dropbtn">其他</a>
+
+    </div>
+  </ul>
+
+</div>
+<div class="d4">
+  <photo>
+
+    <a href="#"><img  src="\demo1\tp\main1.jpg" width="800" height="400" /></a>
+    <a href="#"><img  src="\demo1\tp\main2.jpg" width="800" height="400" /></a>
+    <a href="#"><img  src="\demo1\tp\main3.png" width="800" height="400" /></a>
+  </photo>
+</div>
+<div class="d5">
+  <table class="table"><tbody><tr>
+    <td th:each="i,iStat:${#numbers.sequence(0,2)}"><a th:href="@{'/goods/select_by_id?g_id='+${goodslist.get(iStat.index).g_id}}"  >
+      <div class="d6"><img th:src="@{${goodslist.get(iStat.index).getG_pic()}}" width="200" height="250">
+        <div class="d7" th:text="${goodslist.get(iStat.index).getG_name()}"></div>
+        <div class="d8" th:text="${goodslist.get(iStat.index).getG_lowprice()}">??</div>
+      </div></a></td>
+    <!--<td><a href="www.baidu.com"><div class="d6"><img src="\demo1\tp\ha.jpg" width="200" height="250"><div class="d7">带青蛙</div><div class="d8">999￥</div></div></a></td>
+    <td><a href="www.baidu.com"><div class="d6"><img src="\demo1\tp\kfc.jpg" width="200" height="250"><div class="d7">开封菜</div><div class="d8">999￥</div></div></a></td>-->
+  </tr></tbody></table>
+</div>
+</body>
+</div>
+<script type="text/javascript">
+  function logout(){
+    window.sessionStorage.clear()
+    this.$router.push('/login in1')
+  }
+</script>
+</html>

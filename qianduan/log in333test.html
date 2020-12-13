@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<script type="text/javascript">
+    var a="{\"name\":\"wangwu\",\"age\":\"30\"}";
+    alert(a);
+   // var json1="${json1}";
+    var aaa=JSON.parse(a);
+    document.write(aaa.name);
+    alert(aaa.name);
+</script>
+<body>
+<p th:text="${aaa}"></p>
+<p th:text="${aaa.name}"></p>
+</body>
+
+</html>

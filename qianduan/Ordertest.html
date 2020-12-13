@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单功能测试页</title>
+</head>
+<body>
+<a href="/ttest">ttttttest</a>
+<form action="/demo1/myorder/insert" method="post">
+  <input onkeyup="value=value.replace(/[\W]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="Text1" NAME="Text1">
+
+  u_id<br/>
+  s_id<input type="text" name="s_id"/><br/>
+  g_sizes<input type="text" name="g_sizes"/><br/>
+  o_text<input type="text" name="o_text"/><br/>
+  o_sum<input type="text" name="o_sum"/><br/>
+  o_state<input type="text" name="o_state"/><br/>
+  o_address<input type="text" name="o_address"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+<form action="/demo1/ccc" method="get" >
+  您喜欢的水果？<br /><br />
+  <label><input name="Fruit" type="checkbox" value="a" />苹果 </label>
+  <label><input name="Fruit" type="checkbox" value="b" />桃子 </label>
+  <label><input name="Fruit" type="checkbox" value="c" />香蕉 </label>
+  <label><input name="Fruit" type="checkbox" value="d" />梨 </label>
+  <input type="submit" value="提交">
+</form>
+</body>
+
+</html>

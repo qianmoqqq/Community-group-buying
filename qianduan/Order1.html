@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单页面</title>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+    }
+    .d
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        width: 1250px;
+
+    }
+    .d2
+    {
+        margin-left: 125px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #8b6b6b;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 66px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #000000;
+    }
+    .p{
+        color: black;
+        font-size: 20px;
+        text-align: left;
+        margin-left: 260px;
+        width: 200px;
+    }
+    .p1
+    {
+        color: black;
+        font-size: 20px;
+        text-align: left;
+        margin-left: 125px;
+        width: 1250px;
+    }
+
+    .h2{
+        margin-top: 30px;
+    }
+
+    #tr1{
+        background-color:antiquewhite;
+    }
+
+    #tr2{
+        background-color:aliceblue;
+    }
+
+    .table{
+        margin-left: 125px;
+        width: 1250px;
+        color: #000000;
+        font-size: 18px;
+        border:1px solid #8b8b8b;
+    }
+    .table1
+    {
+        color: #000000;
+        font-size: 18px;
+        width: 1250px;
+        border-spacing: 0px 20px;
+    }
+
+    h3{
+        text-align: right;
+        font-size: 20px;
+        margin-right: 260px;
+    }
+    .text
+    {
+        width: 380px;
+        height: 30px;
+        border:1px solid #000000;
+    }
+    .text:hover
+    {
+        border:1px solid #e21818;
+    }
+    .text1
+    {
+        width: 380px;
+        height: 50px;
+        border:1px solid #000000;
+    }
+    .text1:hover
+    {
+        border:1px solid #e21818;
+    }
+    .text2
+    {
+        width: 380px;
+        height: 100px;
+        border:1px solid #000000;
+    }
+    .text2:hover
+    {
+        border:1px solid #e21818;
+    }
+
+    input[type=submit] {
+        width: 20%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    p2{
+        text-align: right;
+        margin-left: 300px;
+    }
+    p3{
+        color: black;
+        font-size: 16px;
+        text-align: left;
+        margin-left: 260px;
+
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+</style>
+<body>
+<div id="main">
+    <top>
+        <img  src="\demo1\tp\LOGO.jpg" width="1250" />
+    </top>
+    <div>
+        <ul>
+            <li ><a class="active" href="#home">联系客服</a></li>
+            <li ><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+            <li ><a href="/demo1/favor/select">收藏夹</a></li>
+            <li ><a href="/demo1/cart/find">购物车</a></li>
+            <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+            <li ><a href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+            <li class="l"><a href="/demo1/main1">首页</a></li>
+        </ul>
+    </div>
+    <form action="/demo1/myorder/inserttoorder" method="post">
+        <div class="d">
+            <table class="table1"><tbody><tr>
+                <td class="p">确认收货地址</td></tr>
+            <tr style="background-color: #eee5e5">
+                <td style="width: 100px">发送至：</td><td><textarea class="text1" name="o_addr" rows="3" cols="50"></textarea> </td></tr>
+            <tr style="background-color: #eee5e5">
+                <td style="width: 100px">联系电话：</td><td><input type="text" class="text" name="o_phone"> </td>
+            </tr></tbody></table>
+        </div>
+        <div class="h2">
+            <div class="p1">确认订单信息</div>
+            <table class="table">
+                <th:block th:each="cart,cartStat:${session.cartlist}">
+                    <tr id="tr1">
+                        <th>商家</th>
+                        <th>图片</th>
+                        <th width="25%">商品</th>
+                        <th>规格</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                        <th>总计</th>
+                    </tr>
+                    <tr id="tr2" th:each="array1,array1Stat:${session.arrays.get(cartStat.index)}" >
+                        <td th:text="${cart.getS_name()}"></td>
+                            <td><img th:src="@{${session.arrays.get(cartStat.index).get(array1Stat.index).getG_pic()}}"  width="130" height="130"></td>
+                            <td th:text="${session.arrays.get(cartStat.index).get(array1Stat.index).getG_name()}"></td>
+                            <td th:text="${session.arrays.get(cartStat.index).get(array1Stat.index).getG_size()}"></td>
+                            <td th:text="${session.arrays.get(cartStat.index).get(array1Stat.index).getG_price()}"></td>
+                            <td th:text="${session.arrays.get(cartStat.index).get(array1Stat.index).getG_num()}"></td>
+                            <td th:text="${session.arrays.get(cartStat.index).get(array1Stat.index).getG_price()*session.arrays.get(cartStat.index).get(array1Stat.index).getG_num()}"></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div class="p1">
+            给卖家留言:
+        </div>
+        <div class="d2">
+            <textarea  class="text2" name="text" cols="30" rows="4"></textarea>
+        </div>
+        <h3>合计：<span th:text="${sumprice}"></span>元<br>
+            <input type="submit" value="提交订单"></h3>
+    </form>
+</div>
+</body>
+</html>

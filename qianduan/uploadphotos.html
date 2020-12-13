@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>uploadphotos.html</title>
+
+</head>
+
+<body>
+<!--本地图片-->
+<img th:src="@{/static/bg.png}"/>
+
+<form enctype="multipart/form-data" method="post" th:action="@{/uploading}">
+    <input type="file" name="file"/>
+    <input type="submit" value="上传"/>
+</form>
+<!--映射地址图片-->
+<img th:src="@{/upload/bg.png}"/>
+<!--上传并加载图片-->
+<!--<img th:src="@{${url}}"  />-->
+<img src="../static/images/bg.png" th:src="@{${url}}"/>
+
+</body>
+</html>

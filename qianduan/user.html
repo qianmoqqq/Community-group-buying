@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<style>
+    #a{}
+    #b{}
+    .top
+    {
+        margin-left: 70px;
+        margin-right: 70px;
+        height: 180px;
+
+    }
+    .d
+    {
+        margin-top: 0px;
+        width: 1250px;
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+    .d2
+    {
+        border:1px solid #8b8b8b;
+        margin-left: 110px;
+        margin-top: 50px;
+        width: 300px;
+        float: left;
+    }
+    .d3
+    {
+        border:1px solid #8b8b8b;
+        margin-right: 200px;
+        margin-top: 50px;
+        float: right;
+        width: 800px;
+        height: 400px;
+        background-color: #fffaf9;
+    }
+    .d4
+    {
+
+        margin-left: 50px;
+        margin-top: 20px;
+        float: left;
+        width: 680px;
+        height: 300px;
+    }
+    .d5
+    {
+
+        margin-left: 50px;
+        margin-top: 20px;
+        margin-top: 0px;
+        float: left;
+        width: 680px;
+        height: 50px;
+        text-align: center;
+    }
+    .d6
+    {
+        display: none;
+        border:1px solid #8b8b8b;
+        margin-right: 200px;
+        margin-top: 50px;
+        float: right;
+        width: 800px;
+        height: 400px;
+        text-align: center;
+        background-color: #fffaf9;
+    }
+    .d7
+    {
+
+        margin-left: 50px;
+        width: 700px;
+        height: 120px;
+        padding-top: 70px;
+        float: left;
+    }
+    .d8
+    {
+        margin-left: 50px;
+        width: 700px;
+        height: 150px;
+        float: left;
+    }
+    .d9
+    {
+        width: 400px;
+        float: left;
+        border:1px solid #808080;
+        margin-left: 200px;
+        margin-top: 50px;
+    }
+    .text
+    {
+        width: 500px;
+        height: 100px;
+    }
+    .text2
+    {
+        border:1px solid #808080;
+        width: 200px;
+        height: 50px;
+    }
+    .text2:hover
+    {
+        border-color: #ff6630;
+        background-color: #fff0eb;
+    }
+    .text3
+    {
+        border:1px solid #808080;
+        width: 200px;
+        height: 30px;
+    }
+    .text3:hover
+    {
+        border-color: #ff6630;
+        background-color: #fff0eb;
+    }
+    .submit
+    {
+        width: 100px;
+        height: 50px;
+        background-color: #ffa989;
+        color: #000000;
+        border:1px solid #808080;
+    }
+    .submit:hover
+    {
+        background-color: #ff6630;
+        color: white;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #b6b6b6;
+    }
+    .l
+    {
+        float: right;
+    }
+    .l a
+    {
+        display: block;
+        color: #000000;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .l a:hover
+    {
+        background-color: black;
+        color: white;
+    }
+    .ul1 {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #eaeaea;
+        height: 400px;
+    }
+    .l1
+    {
+
+    }
+    .l1 a
+    {
+        display: block;
+        color: #000000;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .l1 a:hover
+    {
+        background-color: black;
+        color: white;
+    }
+    .table
+    {
+        width: 400px;
+        height: 300px;
+        font-size: 20px;
+        margin-left: 150px;
+    }
+    .table2
+    {
+        width: 400px;
+        height: 250px;
+        font-size: 20px;
+        margin-left: 200px;
+        border:1px solid #808080;
+        color: #ff6630;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+</style>
+<script language="javascript">
+    function showhidediv(id,id2,id3)
+    {
+        var sbtitle=document.getElementById(id);
+        var sbtitle2=document.getElementById(id2);
+        var sbtitle3=document.getElementById(id3);
+        if(sbtitle)
+        {
+            if(sbtitle.style.display=='block')
+            {
+            }
+            else{
+                sbtitle.style.display='block';
+                sbtitle2.style.display='none';
+                sbtitle3.style.display='none';
+            }
+        }
+    }
+</script>
+<body>
+<div id="main">
+<div class="top">
+    <img  src="\demo1\tp\LOGO.jpg"  width="1250"height="180" />
+</div>
+<div class="d">
+    <ul>
+        <li class="l"><a href="#">联系客服</a></li>
+        <li class="l"><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+        <li class="l"><a href="/demo1/favor/select">收藏夹</a></li>
+        <li class="l"><a href="/demo1/cart/find">购物车</a></li>
+        <li class="l"><a href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+        <li class="l"><a href="/demo1/main1">首页</a></li>
+    </ul>
+</div>
+<div class="d2">
+    <ul class="ul1">
+        <li class="l1"><a onmouseover='showhidediv("a","b","c")';>个人信息</a></li>
+        <li class="l1"><a onmouseover='showhidediv("b","a","c")';>收货地址</a></li>
+        <li class="l1"><a onmouseover='showhidediv("c","a","b")';>修改密码</a></li>
+    </ul>
+</div>
+<form method="post" action="/demo1/user/update">
+<div  id="a" class="d3">
+    <div class="d4">
+        <table class="table"><tr>
+                <td>用户名:</td><td th:text="${session.user.getU_id()}">xxxxxxx</td>
+            </tr>
+            <tr>
+                <td>昵称:</td><td><input  class="text3" type="text" name="u_name" th:value="${session.user.getU_name()}"></td>
+            </tr>
+            <tr>
+
+                <td>性别:</td><td><input type="radio" id="sex1"name="u_sex" value="1"/>男
+                <input id="sex2"type="radio" name="u_sex" value="2"/>女</td>
+                <script th:inline="javascript">
+                    onload=function () {
+                        var s = [[${session.user.getU_sex()}]];
+                        var s1 = document.getElementById("sex1");
+                        var s2 = document.getElementById("sex2");
+                        //alert(s);
+                        if (s == 1) {
+                           // alert("yes");
+                            $("input[name='u_sex']").eq(1).removeAttr("checked");
+                            $("input[name='u_sex']").eq(0).attr("checked","checked");
+                        } else {
+                           // alert("no");
+                            $("input[name='u_sex']").eq(0).removeAttr("checked");
+                            $("input[name='u_sex']").eq(1).attr("checked","checked");
+                        }
+                    }
+                </script>
+            </tr>
+            <tr>
+                <td>手机号码:</td><td><input  class="text3" type="text" name="u_phone" th:value="${session.user.getU_phone()}"/></td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="d5">
+        <input type="submit" value="保存" class="submit"/>
+    </div>
+
+</div>
+    <div id="b" class="d6">
+        <div class="d7">
+            <textarea rows="3" name="u_address" class="text" th:value="${session.user.getU_address()}">xx省xx市xx街道xx号</textarea>
+        </div>
+        <div class="d8">
+            <input type="submit" value="保存" class="submit"/>
+        </div>
+    </div>
+    <div id="c" class="d6">
+        <div>
+            <table class="table2"><tr>
+                <td>旧密码：</td><td><input class="text2" type="password" name="oldpwd" placeholder="旧密码"></td></tr>
+                <tr>
+                    <td>新密码：</td><td><input class="text2" type="password" name="newpwd" placeholder="新密码"></td></tr>
+                <tr>
+                <td>确认新密码：</td><td><input class="text2" type="password" name="newpwd2" placeholder="确认新密码"></td>
+            </tr></table>
+        </div>
+        <div class="d9">
+            <input type="submit" value="确定" class="submit">
+        </div>
+
+    </div>
+</form>
+</div>
+</body>
+</html>

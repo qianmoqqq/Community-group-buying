@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商家管理商品</title>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #9092d2;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 66px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #0f4fac;
+    }
+
+    #tr1{
+        background-color:antiquewhite;
+    }
+
+    #tr2{
+        background-color:aliceblue;
+    }
+    .h2
+    {
+        background-color: #9fe080;
+        margin-left: 125px;
+        font-size: 20px;
+        height:60px;
+        line-height:60px;
+        overflow:hidden;
+        width: 500px;
+    }
+    .h9
+    {
+        background-color: #9fe080;
+        margin-left: 125px;
+        text-align: right;
+        font-size: 20px;
+        height:60px;
+        line-height:60px;
+        overflow:hidden;
+        width: 1250px;
+    }
+
+    .h1{
+        margin-top: 30px;
+    }
+
+    table{
+        margin:0px auto;
+        color: #000000;
+        font-size: 18px;
+        text-align: center;
+        border-collapse:collapse;
+        margin-left: 125px;
+        margin-right: 125px;
+    }
+    table.ex1
+    {
+        table-layout:fixed
+    }
+    input[type=submit] {
+        width: 100px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    .b
+    {
+        width: 100px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    .b:hover
+    {
+        background-color: #45a049;
+    }
+
+    .button {
+        background-color: #ffffff;
+        border: none;
+        color: white;
+        padding: 0px 0px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 0px 2px;
+        cursor: pointer;
+        outline: none;
+    }
+    .button1 {
+        background-color: transparent;
+        color: #000000;
+        border: 0px ;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+</style>
+<script type="text/javascript">
+    window.onload = function() {
+        var btn = document.getElementById("all");
+        btn.onclick = function() {
+            var flag = this.checked;
+            var items = document.getElementsByName("ckbx");
+            for (var i = 0; i < items.length; i++) {
+                items[i].checked = flag;//将所有item的状态设为全选按钮的状态
+            }
+        }
+
+
+        var items = document.getElementsByName("ckbx");
+        for (var i = 0; i < items.length; i++) {
+            items[i].onclick = function() {//对每个item设置点击
+                var number = 0;//记录选中的个数
+                for (var j = 0; j < items.length; j++) {
+                    if (items[j].checked) {
+                        number++;
+                    }
+                }
+                document.getElementById("all").checked = (items.length == number);
+            }
+        }
+    }
+</script>
+<div id="main">
+<body>
+<top>
+    <img  src="\demo1\tp\sellertop.png" width="1250" />
+</top>
+<div>
+    <ul>
+        <li><a href="#servicer">联系客服</a></li>
+        <li><a href="/demo1/myorder/find_by_s_id">订单管理</a></li>
+        <li><a href="/demo1/addgoods">上架商品</a></li>
+        <li><a href="/demo1/goods/findbys_id">商品管理</a></li>
+        <li class="l"><a href="/demo1/logout2">退出登陆</a></li>
+        <li><a class="active" th:text="'你好商户：'+${session.seller.s_name}"href="/demo1/seller3">你好商户</a></li>
+        <li><a href="/demo1/main2">首页</a></li>
+    </ul>
+</div>
+<div class="h1">
+    <table style="width: 1250px">
+        <tr id="tr1">
+            <th>商品id</th>
+            <th>图片</th>
+            <th width="25%">商品</th>
+            <th>最低价</th>
+            <th>最高价</th>
+            <th></th>
+        </tr>
+        <tr id="tr2"th:each="goods,goodsStat:${session.goodslist}">
+            <td th:text="${goods.getG_id()}"></td>
+            <td><img th:src="@{${goods.getG_pic()}}" width="130" height="130"></td>
+            <td th:text="${goods.getG_name()}"></td>
+            <td th:text="${goods.getG_lowprice()}"></td>
+            <td th:text="${goods.getG_highprice()}"></td>
+            <td style="text-align: right"><a href=""><input type="button" value="删除" class="b"></a></td>
+        </tr>
+    </table>
+
+    <div class="h9" style="float: left">
+            <input  type="submit" value="发布" name="name1">
+    </div>
+
+</div>
+</body>
+</div>
+</html>

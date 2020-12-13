@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商户信息修改</title>
+</head>
+<style>
+    top{
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #9092d2;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 66px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #0f4fac;
+    }
+    .h1{
+        margin-left: 260px;
+        margin-right: 260px ;
+        background: #f1f1f1;
+        font-size: 20px;
+        margin-top: 50px;
+    }
+    input[type=text], select
+    {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .h2{
+        margin-left: 80px;
+        margin-right: 140px;
+        font-size: 15px;
+        color: red;
+    }
+    .h3{
+        text-align: center;
+    }
+    input[type=submit] {
+        width: 10%;
+        background-color: #3b46ac;
+        color: #000000;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    input[type=submit]:hover {
+        background-color: #2c38b6;
+    }
+
+    table{
+        color: #000000;
+        font-size: 18px;
+        text-align: center;
+        border-collapse:collapse;
+        margin: 0px auto;
+
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+</style>
+<script language="javascript">
+
+</script>
+<div id="main">
+<body>
+<top>
+    <img  src="\demo1\tp\sellertop.png" width="1250" />
+</top>
+<div>
+    <ul>
+        <li><a href="#servicer">联系客服</a></li>
+        <li><a href="/demo1/myorder/find_by_s_id">订单管理</a></li>
+        <li><a href="/demo1/addgoods">上架商品</a></li>
+        <li><a href="/demo1/goods/findbys_id">商品管理</a></li>
+        <li class="l"><a href="/demo1/logout2">退出登陆</a></li>
+        <li><a class="active" th:text="'你好商户：'+${session.seller.s_name}"href="/demo1/seller3">你好商户</a></li>
+        <li><a href="/demo1/main2">首页</a></li>
+    </ul>
+</div>
+<div class="h1">
+    <form action="/demo1/seller/update" method="post">
+    <table><tbody><tr>
+        <td>店铺名称：</td>
+        <td><input type="text" name="s_name" th:value="${session.seller.s_name}" placeholder="请输入店铺名称"></td>
+    </tr>
+    <tr>
+        <td>联系电话:</td><td><input type="text" name="s_phone"th:value="${session.seller.s_phone}"placeholder="请输入11位电话号码"></td>
+    </tr>
+    <tr>
+        <td>经营地址:</td><td><input type="text" name="s_addr"th:value="${session.seller.s_addr}"placeholder="请输入详细地址"></td>
+    </tr>
+    <tr>
+        <td>店铺介绍:</td><td><textarea name="s_intro" rows="7" cols="50" th:value="${session.seller.s_intro}"></textarea></td>
+    </tr>
+        </tbody>
+    </table>
+    <div class="h2">
+    我声明，此页面所填写内容均真实有效，特别是经营地址为店铺最新可联系到的地址，同时可以作为行政机关和司法机关送达法律文件的地址。如果上述地址信息有误，愿意承担由此带来的平台处罚、行政监管和司法诉讼风险。
+</div>
+    <div class="h3">
+    <input type="submit" value="保存"></div>
+    </form>
+</div>
+
+</body>
+</div>
+</html>

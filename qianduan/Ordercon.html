@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单管理</title>
+</head>
+<style>
+    #a{ }
+    #b{ display: none}
+    #c{ display: none}
+    #d{ display: none}
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+
+    }
+    body{
+        margin: 0px auto;
+    }
+    .d
+    {
+        background-color: #d5d5d5;
+        width: 300px;
+        height: 560px;
+        margin-left: 125px;
+        float: left;
+
+    }
+    .d1
+    {
+        text-align: right;
+        width: 300px;
+        height: 40px;
+        float: left;
+        background-color: #e7e7e7;
+    }
+    .d2
+    {
+        text-align: center;
+        margin-top: 0px;
+        width: 300px;
+        float: left;
+        height: 55px;
+        font-size: 30px;
+        font-weight: bold;
+        background: #8073d5;
+    }
+    .d3
+    {
+        margin-top: 0px;
+        width: 300px;
+        float: left;
+    }
+    .d4
+    {
+        border:1px solid #e80c0c;
+        margin-top: 0px;
+        margin-left: 0px;
+        width: 950px;
+        float: left;
+        height: 560px;
+        background-color: #fdf8f7;
+    }
+
+
+    .ul2 {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #9094d5;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 159px;
+        overflow: hidden;
+    }
+
+    .l2 {
+        float: right;
+    }
+
+    .l2 a {
+        display: block;
+        color: #401818;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .l2 a:hover {
+        background-color: #0f4fac;
+    }
+    ul.p1{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 300px;
+        background-color: #b9c3e7;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+        font-size: 20px;
+    }
+
+    .p1 a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+        text-align: right;
+    }
+
+    .p1 a.active {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .p1 a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+    p{
+        background: #96bde2;
+    }
+    table{
+        margin:0px auto;
+        color: #000000;
+        font-size: 18px;
+        text-align: center;
+        border-collapse:collapse;
+    }
+    table.ex1
+    {
+        table-layout:fixed
+    }
+    input[type=submit] {
+        width: 100px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    #tr1{
+        background-color:antiquewhite;
+    }
+
+    #tr2{
+        background-color:aliceblue;
+    }
+
+    .h1{
+        margin-top: 30px;
+    }
+    .h4
+    {
+        background-color: #9fe080;
+        margin-left: 0px;
+        font-size: 20px;
+        height:60px;
+        line-height:60px;
+        overflow:hidden;
+        width: 550px;
+    }
+    .h5
+    {
+        background-color: #9fe080;
+        margin-right: 0px;
+        text-align: right;
+        font-size: 20px;
+        height:60px;
+        line-height:60px;
+        overflow:hidden;
+        width: 400px;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+</style>
+
+<script language="javascript">
+    function showhidediv(id,id2,id3,id4,id5,id6,id7)
+    {
+        var sbtitle=document.getElementById(id);
+        var sbtitle2=document.getElementById(id2);
+        var sbtitle3=document.getElementById(id3);
+        var sbtitle4=document.getElementById(id4);
+        var sbtitle5=document.getElementById(id5);
+        var sbtitle6=document.getElementById(id6);
+        var sbtitle7=document.getElementById(id7);
+        if(sbtitle)
+        {
+            if(sbtitle.style.display=='block')
+            {
+            }
+            else{
+                sbtitle.style.display='block';
+                sbtitle2.style.display='none';
+                sbtitle3.style.display='none';
+                sbtitle4.style.display='none';
+                sbtitle5.style.display='none';
+                sbtitle6.style.display='none';
+                sbtitle7.style.display='none';
+            }
+        }
+    }
+
+    window.onload = function() {
+        var btn = document.getElementById("all");
+        btn.onclick = function() {
+            var flag = this.checked;
+            var items = document.getElementsByName("ckbx");
+            for (var i = 0; i < items.length; i++) {
+                items[i].checked = flag;//将所有item的状态设为全选按钮的状态
+            }
+        }
+
+
+        var items = document.getElementsByName("ckbx");
+        for (var i = 0; i < items.length; i++) {
+            items[i].onclick = function() {//对每个item设置点击
+                var number = 0;//记录选中的个数
+                for (var j = 0; j < items.length; j++) {
+                    if (items[j].checked) {
+                        number++;
+                    }
+                }
+                document.getElementById("all").checked = (items.length == number);
+            }
+        }
+    }
+</script>
+<div id="mian">
+<body>
+<top>
+    <img  src="\demo1\tp\sellertop.png" width="1250" />
+</top>
+<div class="p">
+    <ul class="ul2">
+        <li class="l2"><a href="#servicer">联系客服</a></li>
+        <li class="l2"><a href="/demo1/myorder/find_by_s_id">订单管理</a></li>
+        <li class="l2"><a href="/demo1/inpage">上架商品</a></li>
+        <li class="l2"><a href="/demo1/goods/findbys_id">商品管理</a></li>
+        <li class="l2"><a href="/demo1/logout2">退出登陆</a></li>
+        <li class="l2"><a class="active" th:text="'你好商户：'+${session.seller.s_name}"href="/demo1/seller3">你好商户</a></li>
+        <li class="l2"><a href="/demo1/main2">首页</a></li>
+    </ul>
+</div>
+<div class="d">
+    <div class="d2">
+        订单状态
+    </div>
+    <div class="d3">
+        <ul class="p1">
+            <li class="p1"><a onmouseover='showhidediv("a","b","c","d")';>待付款</a></li>
+            <li class="p1"><a onmouseover='showhidediv("b","a","c","d")';>待发货</a></li>
+            <li class="p1"><a onmouseover='showhidediv("c","b","a","d")';>待收货</a></li>
+            <li class="p1"><a onmouseover='showhidediv("d","b","c","a")';>已完成</a></li>
+        </ul>
+    </div>
+
+</div>
+<form action="" method="post">
+    <div  id="a" class="d4">
+        <div class="h1">
+                <table>
+                    <th:block th:each="order1,order1stat:${myorderlist1}">
+                    <tr id="tr1">
+                        <th>图片</th>
+                        <th width="25%">商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>买家</th>
+                        <th>实收款</th>
+                        <th>交易状态</th>
+                    </tr>
+                    <tr id="tr2"th:each="array1,array1Stat:${arrays1.get(order1stat.index)}">
+                        <td><img th:src="@{${arrays1.get(order1stat.index).get(array1Stat.index).getG_pic()}}" width="130" height="130"></td>
+                        <td th:text="${arrays1.get(order1stat.index).get(array1Stat.index).getG_name()}"></td>
+                        <td th:text="${arrays1.get(order1stat.index).get(array1Stat.index).getG_size()}"></td>
+                        <td th:text="${arrays1.get(order1stat.index).get(array1Stat.index).getG_num()}"></td>
+                        <td th:text="${order1.getU_id()}"></td>
+                        <td th:text="${arrays1.get(order1stat.index).get(array1Stat.index).getG_price()*arrays1.get(order1stat.index).get(array1Stat.index).getG_num()}"></td>
+                        <td><span th:if="${order1.getO_state()} eq 1" ><span>未支付</span></span>
+                            <span th:if="${order1.getO_state()} eq 2" ><span>待发货</span></span>
+                            <span th:if="${order1.getO_state()} eq 3" ><span>待收货</span></span>
+                            <span th:if="${order1.getO_state()} eq 4" ><span>已收货</span></span></td>
+                        </th:block>
+                    </tr> </table>
+                <div  class="h4" style="float: left">
+                </div>
+                <div class="h5" style="float: right">
+                    <input  type="submit" value="发布">
+                </div>
+        </div>
+    </div>
+    <div  id="b" class="d4" >
+        <div  id="a" class="d4">
+            <div class="h1">
+                <table>
+                    <th:block th:each="order2,order2stat:${myorderlist2}">
+                        <tr id="tr1">
+                            <th>图片</th>
+                            <th width="25%">商品</th>
+                            <th>单价</th>
+                            <th>数量</th>
+                            <th>买家</th>
+                            <th>实收款</th>
+                            <th>交易状态</th>
+                        </tr>
+                        <tr id="tr2"th:each="array2,array2Stat:${arrays2.get(order2stat.index)}">
+                            <td><img th:src="@{${arrays2.get(order2stat.index).get(array2Stat.index).getG_pic()}}" width="130" height="130"></td>
+                            <td th:text="${arrays2.get(order2stat.index).get(array2Stat.index).getG_name()}"></td>
+                            <td th:text="${arrays2.get(order2stat.index).get(array2Stat.index).getG_size()}"></td>
+                            <td th:text="${arrays2.get(order2stat.index).get(array2Stat.index).getG_num()}"></td>
+                            <td th:text="${order2.getU_id()}"></td>
+                            <td th:text="${arrays2.get(order2stat.index).get(array2Stat.index).getG_price()*arrays2.get(order2stat.index).get(array2Stat.index).getG_num()}"></td>
+                            <td><span th:if="${order2.getO_state()} eq 1" ><span>未支付</span></span>
+                                <span th:if="${order2.getO_state()} eq 2" ><span>待发货</span></span>
+                                <span th:if="${order2.getO_state()} eq 3" ><span>待收货</span></span>
+                                <span th:if="${order2.getO_state()} eq 4" ><span>已收货</span></span></td>
+                    </th:block>
+                    </tr> </table>
+                <div  class="h4" style="float: left">
+                </div>
+                <div class="h5" style="float: right">
+                    <input  type="submit" value="发布">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  id="c" class="d4">
+        <div  id="a" class="d4">
+            <div class="h1">
+                <table>
+                    <th:block th:each="order3,order3stat:${myorderlist3}">
+                        <tr id="tr1">
+                            <th>图片</th>
+                            <th width="25%">商品</th>
+                            <th>单价</th>
+                            <th>数量</th>
+                            <th>买家</th>
+                            <th>实收款</th>
+                            <th>交易状态</th>
+                        </tr>
+                        <tr id="tr2"th:each="array3,array3Stat:${arrays3.get(order3stat.index)}">
+                            <td><img th:src="@{${arrays3.get(order3stat.index).get(array3Stat.index).getG_pic()}}" width="130" height="130"></td>
+                            <td th:text="${arrays3.get(order3stat.index).get(array3Stat.index).getG_name()}"></td>
+                            <td th:text="${arrays3.get(order3stat.index).get(array3Stat.index).getG_size()}"></td>
+                            <td th:text="${arrays3.get(order3stat.index).get(array3Stat.index).getG_num()}"></td>
+                            <td th:text="${order3.getU_id()}"></td>
+                            <td th:text="${arrays3.get(order3stat.index).get(array3Stat.index).getG_price()*arrays3.get(order3stat.index).get(array3Stat.index).getG_num()}"></td>
+                            <td><span th:if="${order3.getO_state()} eq 1" ><span>未支付</span></span>
+                                <span th:if="${order3.getO_state()} eq 2" ><span>待发货</span></span>
+                                <span th:if="${order3.getO_state()} eq 3" ><span>待收货</span></span>
+                                <span th:if="${order3.getO_state()} eq 4" ><span>已收货</span></span></td>
+                    </th:block>
+                    </tr> </table>
+                <div  class="h4" style="float: left">
+                </div>
+                <div class="h5" style="float: right">
+                    <input  type="submit" value="发布">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  id="d" class="d4">
+        <div  id="a" class="d4">
+            <div class="h1">
+                <table>
+                    <th:block th:each="order4,order4stat:${myorderlist4}">
+                        <tr id="tr1">
+                            <th>图片</th>
+                            <th width="25%">商品</th>
+                            <th>单价</th>
+                            <th>数量</th>
+                            <th>买家</th>
+                            <th>实收款</th>
+                            <th>交易状态</th>
+                        </tr>
+                        <tr id="tr2"th:each="array4,array4Stat:${arrays4.get(order4stat.index)}">
+                            <td><img th:src="@{${arrays4.get(order4stat.index).get(array4Stat.index).getG_pic()}}" width="130" height="130"></td>
+                            <td th:text="${arrays4.get(order4stat.index).get(array4Stat.index).getG_name()}"></td>
+                            <td th:text="${arrays4.get(order4stat.index).get(array4Stat.index).getG_size()}"></td>
+                            <td th:text="${arrays4.get(order4stat.index).get(array4Stat.index).getG_num()}"></td>
+                            <td th:text="${order4.getU_id()}"></td>
+                            <td th:text="${arrays4.get(order4stat.index).get(array4Stat.index).getG_price()*arrays4.get(order4stat.index).get(array4Stat.index).getG_num()}"></td>
+                            <td><span th:if="${order4.getO_state()} eq 1" ><span>未支付</span></span>
+                                <span th:if="${order4.getO_state()} eq 2" ><span>待发货</span></span>
+                                <span th:if="${order4.getO_state()} eq 3" ><span>待收货</span></span>
+                                <span th:if="${order4.getO_state()} eq 4" ><span>已收货</span></span></td>
+                    </th:block>
+                    </tr> </table>
+                <div  class="h4" style="float: left">
+                </div>
+                <div class="h5" style="float: right">
+                    <input  type="submit" value="发布">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</div>
+</html>

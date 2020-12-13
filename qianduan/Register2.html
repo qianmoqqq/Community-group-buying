@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面2</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+    }
+    mid
+    {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    input[type=text], select
+    {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    table{
+        margin:0px auto;
+        color: #000000;
+        font-size: 18px;
+        border-collapse: separate;
+        border-spacing: 10px 20px;
+    }
+    .p{
+        text-align:left;
+    }
+    input[type=submit] {
+        width: 10%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    p2{
+        color: red;
+    }
+    p3{
+        color: red;
+        display: none;
+    }
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    div
+    {
+        border-radius: 5px;
+        padding: 20px;
+        margin-left: 135px;
+        margin-right: 135px;
+
+    }
+
+    body
+    {
+        margin:0px auto;
+        text-align:center;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+</style>
+<div id="main">
+<body>
+<top>
+    <img  src="\demo1\tp\LOGO.jpg" width="1250" />
+</top>
+<mid>
+    <img  src="\demo1\tp\mid2.png" width="500" />
+</mid>
+<hr>
+<div class="p">
+    <form name="register2"action="/demo1/user/register3" method="post" onsubmit="flag">
+        <input type="hidden" id="u_phone" name="u_phone" th:value="${phone}">
+        <table><tbody><tr>
+            <td><p2>*</p2>用户名</td><td><input type="text" id="u_id" name="u_id" placeholder="您的账户名和登录名" onblur="check1()"></td>
+            <td><p3 id="rr1">登录名错误！只能输入开头为字母的8~20位的字母与数字的组合，可带".","-","+"</p3></td>
+        </tr>
+
+        <tr>
+            <td><p2>*</p2>昵称</td><td><input type="text" id="u_name" name="u_name" placeholder="您的用户昵称"></td>
+        </tr>
+
+        <tr>
+            <td><p2>*</p2>性别</td><td><input type="radio" name="u_sex" value="1"/>男
+            <input type="radio" name="u_sex" value="2"/>女
+        </tr>
+
+        <tr>
+            <td><p2>*</p2>密码</td><td>
+            <input type="text" id="u_pwd" name="u_pwd" placeholder="建议使用两种字符,8~20位"></td>
+        </tr>
+
+        <tr>
+            <td><p2>*</p2>确认密码</td><td><input type="text" id="u_pwd2" name="u_pwd2" placeholder="请再次输入密码"></td>
+        </tr></tbody>
+        </table>
+
+
+<div>
+    <input type="submit" value="立即注册">
+</div>
+</form>
+</div>
+</body>
+</div>
+<script type="text/javascript">
+    //var u_id=register2.u_id.value();
+    var flag=false;
+    function check1()
+    {
+        var r1="^[a-zA-Z]{1}([a-zA-Z0-9]|[._+]){7,19}$";
+        var d1=document.getElementById("rr1");
+        var u_id1=document.getElementById("u_id");
+        var s=u_id1.value;
+        alert(s);
+        var patrn= new RegExp(r1);
+        if (patrn.exec(s))
+        {
+            flag=true;
+            alert("true")
+            if(d1.style.display=="block") {
+                d1.style.display = "none";
+            }
+        }
+        else {
+            flag = false;
+            d1.style.display = "block";
+        }
+    }
+
+</script>
+</html>

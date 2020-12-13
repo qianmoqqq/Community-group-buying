@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>上架商品</title>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #9092d2;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 66px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #0f4fac;
+    }
+    body
+    {
+        margin:0px auto;
+        text-align:center;
+    }
+
+    table{
+        margin:0px auto;
+        color: #000000;
+        font-size: 18px;
+        border-collapse: separate;
+        border-spacing: 10px 20px;
+        text-align: left;
+    }
+    .h1
+    {
+        background: #83fdfc;
+        font-size: 20px;
+        color: #000000;
+        margin-left: 235px;
+        margin-right: 235px;
+        margin-top: 30px;
+    }
+
+    input[type=text], select
+    {
+        width: 80%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #000000;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type=submit] {
+        width: 10%;
+        background-color: #cb5757;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #bd1c1c;
+    }
+    .d11
+    {
+        position: absolute;
+        margin-top: 20px;
+        opacity:0.5;
+        text-align: left;
+        width: 100px;
+        height: 100px;
+    }
+    .file
+    {
+        height:100px;
+        width: 100px;
+        opacity:0;
+        cursor:pointer;
+    }
+    h2{
+        text-align: left;
+        margin-left: 120px;
+        font-size: 20px;
+        font-weight: normal;
+    }
+
+    #main{
+         width:1440px;
+         height: 900px;
+         MARGIN-RIGHT:auto;
+         MARGIN-LEFT:auto;
+     }
+</style>
+<script language="javascript">
+    function upload(obj)
+    {
+        var img = document.getElementById("showImg");
+        let file = obj.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(){
+            img.setAttribute("src", this.result);
+        }
+    }
+</script>
+<div id="main">
+<body>
+<top>
+    <img  src="\demo1\tp\sellertop.png" width="1250" />
+</top>
+<div>
+    <ul>
+        <li><a href="#servicer">联系客服</a></li>
+        <li><a href="/demo1/myorder/find_by_s_id">订单管理</a></li>
+        <li><a href="/demo1/addgoods">上架商品</a></li>
+        <li><a href="/demo1/goods/findbys_id">商品管理</a></li>
+        <li ><a href="/demo1/logout2">退出登陆</a></li>
+        <li><a  th:text="'你好商户：'+${session.seller.s_name}"href="/demo1/seller3">你好商户</a></li>
+        <li><a href="/demo1/main2">首页</a></li>
+    </ul>
+</div>
+
+<div class="h1">
+    <form enctype="multipart/form-data"action="/demo1/goods/insert" method="post">
+        <table><tbody><tr>
+            <td>*上传商品主图
+                <div class="d11">
+                    <img src="tp/add.jpg" alt="代替input的图片" id="showImg" style="width:100px">
+                </div>
+                <div>
+                    <input type="file" class="file" name="file" id="" onchange="upload(this)" />
+                </div></td>
+        </tr>
+        <tr>
+            <td>*商品标题<input type="text" id="g_name" name="g_name" placeholder="最多输入30个汉字"></td>
+            <td>*类目属性<select name="g_type">
+            <option value="1">水果</option>
+            <option value="2">蔬菜</option>
+            <option value="3">海鲜</option>
+            </select></td>
+        </tr>
+
+        <tr>
+            <td>*规格一：<input type="text" style="width: 150px" id="G_numa1" name="g_size1" placeholder="请输入商品规格一"></td>
+            <td>*价格：<input type="text" style="width: 150px"id="G_price1" name="g_price1" placeholder="请输入价格"></td>
+            <td>*数量：<input type="text" style="width: 150px"id="G_numb1" name="g_num1" placeholder="请输入上架的数量"></td>
+            </tr>
+        <tr><td>*规格二：<input type="text" style="width: 150px"id="G_numa2" name="g_size2" placeholder="请输入商品规格二"></td>
+            <td>*价格：<input type="text" style="width: 150px"id="G_price2" name="g_price2" placeholder="请输入价格"></td>
+            <td>*数量：<input type="text" style="width: 150px"id="G_numb2" name="g_num2" placeholder="请输入上架的数量"></td>
+        </tr>
+        <tr>
+            <td>*规格三：<input type="text" style="width: 150px"id="G_numa3" name="g_size3" placeholder="请输入商品规格三"></td>
+            <td>*价格：<input type="text" style="width: 150px"id="G_pricea" name="g_price3" placeholder="请输入价格"></td>
+            <td>*数量：<input type="text" style="width: 150px"id="G_numb3" name="g_num3" placeholder="请输入上架的数量"></td>
+        </tr>
+        </tbody>
+        </table>
+        <h2>*商品介绍<br></h2>
+        <h2><textarea  name="g_intro" rows=8px cols=100px></textarea></h2>
+        <input type="submit" value="确认上架">
+    </form>
+
+    </div>
+</body>
+</div>
+</html>

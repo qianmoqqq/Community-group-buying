@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<style>
+    top
+    {
+        margin-left: 70px;
+        margin-right: 70px;
+        height: 180px;
+    }
+    .d
+    {
+        margin-top: 0px;
+        margin-left: 70px;
+        margin-right: 70px;
+        width: 1250px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #8b6b6b;
+        margin-top: 0px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    body
+    {
+        margin:0px auto;
+        text-align:center;
+    }
+
+    li a:hover {
+        background-color: #000000;
+    }
+
+    #tr1{
+        background-color:antiquewhite;
+    }
+
+    #tr2{
+        background-color:aliceblue;
+    }
+    .h2
+    {
+        background-color: #9fe080;
+    }
+
+    .h1{
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .table{
+        margin-left: 70px;
+        width: 1250px;
+    }
+    table.ex1
+    {
+        table-layout:fixed
+    }
+    .submit {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .submit:hover {
+        background-color: #45a049;
+    }
+    #main
+    {
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+</style>
+<div id="main">
+
+<body>
+<form action="" method="post">
+    <top>
+        <img  src="\demo1\tp\LOGO.jpg" width="1250" />
+    </top>
+    <div class="d">
+        <ul>
+            <li><a href="#servicer">联系客服</a></li>
+            <li><a href="/demo1/myorder/find_by_u_idr">我的订单</a></li>
+            <li><a href="/demo1/favor/select">收藏夹</a></li>
+            <li><a href="/demo1/cart/find">购物车</a></li>
+            <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+            <li><a class="active" href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+            <li class="l"><a href="/demo1/main1">首页</a></li>
+        </ul>
+    </div>
+    <div class="h1">
+        <table class="table">
+            <th:block th:each="cart,cartStat:${myorderlist1}">
+                <tr id="tr1">
+                    <th>图片</th>
+                    <th width="25%">商品</th>
+                    <th>规格</th>
+                    <th>数量</th>
+                    <th>价格</th>
+                    <th>状态</th>
+                </tr>
+                <tr style="background-color: #fffafa"> <td >订单号：<span th:text="${cart.getO_id()}"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr id="tr2" th:each="array1,array1Stat:${arrays.get(cartStat.index)}" >
+                    <td><img th:src="@{${arrays.get(cartStat.index).get(array1Stat.index).getG_pic()}}"  width="130" height="130"></td>
+                    <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_name()}"></td>
+                    <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_size()}"></td>
+                    <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_num()}"></td>
+                    <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_price()*arrays.get(cartStat.index).get(array1Stat.index).getG_num()}"></td>
+                    <td >
+                        <span th:if="${cart.getO_state()} eq 1" ><span>未支付</span></span>
+                    <span th:if="${cart.getO_state()} eq 2" ><span>待发货</span></span>
+                        <span th:if="${cart.getO_state()} eq 3" ><span>待收货</span></span>
+                        <span th:if="${cart.getO_state()} eq 4" ><span>已收货</span></span>
+                    </td>
+                </tr>
+                <tr style="background-color: #f6fff5"><td>总价：</td><td></td><td></td><td></td><td style="color: #ff6630" th:text="${cart.getO_sum()}"></td><td></td></tr>
+                <tr class="h2">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="button" class="submit" style="width:80px" value="取消订单"></td>
+                    <td><span tyle="width:80px"th:if="${cart.getO_state()} eq 1" ><input class="submit" type="button" style="width:80px"value="立即支付"/></span>
+                        <span tyle="width:80px"th:if="${cart.getO_state()} eq 3" ><input class="submit" type="button" style="width:80px"value="确认收货"/></span>
+                        <span tyle="width:80px"th:if="${cart.getO_state()} eq 4" ><input class="submit" type="button"style="width:80px" value="立即评价"/></span></td>
+                </tr>
+            </th:block>
+
+        </table>
+    </div>
+    </form>
+</body>
+</div>
+</html>

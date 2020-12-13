@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面1</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+    }
+    body
+    {
+        margin:0px auto;
+        text-align:center;
+    }
+    table{
+        margin:0px auto;
+        color: #8b8b8b;
+        font-size: 18px;
+        border-collapse: separate;
+        border-spacing: 10px 20px;
+    }
+    .button {
+        background-color: #fafafa;
+        border: none;
+        color: #000000;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 60%;
+        margin: 1px 1px;
+        cursor: pointer;
+    }
+
+        a:link{color: #96bde2}
+        a:hover{color: blueviolet}
+        a:active{color: blue}
+
+    input[type=submit] {
+        width: 10%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    input[type=text], select
+    {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+</style>
+<div id="main">
+<body>
+ <top>
+    <img  src="tp\LOGO.jpg" width="1250" />
+ </top>
+    
+    <img  src="tp\register1.png" width="500" />
+<hr>
+ <form name="phonecheck" action="/demo1/user/register2" method="post" onsubmit="return check()">
+<table><tbody><tr>
+    <td>+86</td><td><input type="text" id="userPhone" name="userphone" placeholder="请输入你的手机号"></td>
+</tr>
+<tr>
+    <td>手机验证码</td><td><input type="text" id="code" name="code" placeholder="输入验证码"></td>
+    <td><input type="button" class="button" onclick="sendSMS()" value="获取验证码"></td>
+</tr><tbody>
+    </table>
+<input type="submit" value="下一步"><br>
+ </form>
+已有账号？<a href="/demo1/">直接登陆</a>
+
+
+</body>
+</div>
+<script type="text/javascript">
+    var code=null;
+    function check() {
+        var code1 = phonecheck.code.value;
+        if(code==null){
+            return false;
+        }
+        if(code==code1){
+            phonecheck.submit();
+            return true;
+        }else
+            return false;
+    }
+
+    function sendSMS() {
+      // alert("sendSMS");
+        var userphone = phonecheck.userphone.value;
+        $(document).ready(function () {
+            $.post("/demo1/api/sendSMS",
+                {"username": userphone},
+                function (data) {
+                    /*<![CDATA[*/
+                    if (data!=null) {
+                        code=data;
+                        alert("验证码发送成功:");
+                    }else
+                        alert("验证码发送失败");
+                    /*]]>*/
+                });
+        });
+    }
+
+</script>
+</html>

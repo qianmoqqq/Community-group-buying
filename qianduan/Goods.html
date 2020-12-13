@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<style>
+    top
+    {
+      margin-left: 70px;
+      margin-right: 70px;
+      height: 180px;
+    }
+    .d
+    {
+        margin-top: 0px;
+        width: 1250px;
+        margin-left: 70px;
+        margin-right: 70px;
+    }
+    .d1
+    {
+
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #9092d2;
+        margin-top: 0px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #0f4fac;
+    }
+    .img
+    {
+        float:left;
+        margin-left:245px;
+        margin-top:200px;
+    }
+    .t1
+    {
+        margin-right: 245px;
+        margin-top: 5px;
+        margin-bottom: 50px;
+        height: 110px;
+        float: right;
+        width: 100px;
+        text-align: center;
+        padding-top: 30px;
+    }
+    .t1_5
+    {
+        margin-top: 100px;
+        height: 110px;
+        text-align: center;
+
+    }
+    .t2
+    {
+        margin-top:5px;
+        margin-bottom: 50px;
+        height: 110px;
+        float: right;
+        width: 500px;
+        text-align: left;
+        padding-top: 30px;
+
+    }
+    .submit
+    {
+        margin-top: 0px;
+        width:100px;
+        height: 80px;
+        color: #ffffff;
+        font-size: 16px;
+        background-color: #ff6630;
+        border:1px solid #ff0000;
+    }
+    .submit:hover
+    {
+        background-color: #ffffff;
+        color: #ff6630;
+    }
+    .submit2
+    {
+        width:200px;
+        height: 80px;
+        border:1px solid #ff0000;
+        background-color: #ff6630;
+        color: #ffffff;
+        font-size: 32px;
+    }
+    .submit2:hover
+    {
+        background-color: #ffffff;
+        color: #ff6630;
+    }
+    .serch
+    {
+        width:498px;
+        height: 78px;
+        border:1px solid #8b8b8b;
+        font-size: 18px;
+    }
+    .serch:hover
+    {
+        border-color: #ff6630;
+    }
+    .wz
+    {
+        height: 250px;
+        float: right;
+        width: 500px;
+        background-color:rgb(220,220,220);
+        margin-right: 245px;
+        padding-left:50px;
+        padding-right:50px;
+    }
+    .wz15
+    {
+        border-top-style:solid;
+        border-bottom-style:solid;
+        margin-top: 700px;
+        text-align: center;
+    }
+    .wz2
+    {
+        background-color:rgb(255,255,255);
+        height: 50px;
+        width: 100px;
+        text-align: center;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+</style>
+<div id="main">
+<body>
+<top>
+    <img  src="\demo1\tp\LOGO.jpg" width="1250" />
+</top>
+<div class="d">
+    <ul>
+        <li ><a class="active" href="#home">联系客服</a></li>
+        <li ><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+        <li ><a href="/demo1/favor/select">收藏夹</a></li>
+        <li ><a href="/demo1/cart/find">购物车</a></li>
+        <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+        <li ><a href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+        <li class="l"><a href="/demo1/main1">首页</a></li>
+    </ul>
+</div>
+
+<form action="/demo1/goods/select_By_Group" method="post">
+    <div class="t1">
+        <input type="submit" class="submit" value="搜索">
+    </div>
+    <div class="t2">
+        <input type="text" class="serch" name="searchmessage" placeholder="搜索" >
+    </div>
+</form>
+
+
+<div class="d1">
+    <div class="img">
+        <a target="_blank" href="">
+            <img th:src="@{${goods.g_pic}}" alt="image" width="300" height="200">
+        </a>
+    </div>
+</div>
+<div class="wz">
+    <form  method="post">
+        <input type="hidden" name="g_id" th:value="${goods.g_id}">
+        <input type="hidden" name="g_pic" th:value="${goods.g_pic}">
+        <input type="hidden" name="s_id" th:value="${goods.s_id}">
+    <div style="text-align: center;"><h1 th:text="${goods.g_name}">??</h1></div>
+    <h3><span style="color: red; ">商品价格：<span name="g_price"id="price"th:text="${goods.g_lowprice}">???</span></span></h3>
+
+        <table border="1" frame=void rules=none>
+            <tr>
+                <td>商品属性选择：</td>
+            </tr>
+            <tr >
+                <th:block th:each="size,sizestatus:${sizelist}">
+                    <p th:remove="tag" th:utext="${(sizestatus.index+1)%4==1 ? '&lt;tr&gt;':''}"/>
+                    <td><input  type="radio" name="g_size" th:value="${sizestatus.index}" onclick="click1(this)"th:text="${size.get('g_sizea')}"></td>
+                    <input type="hidden" th:id="'gp'+${sizestatus.index}" th:value="${size.get('g_pricea')}"/>
+                    <input type="hidden" th:id="'gn'+${sizestatus.index}" th:value="${size.get('g_numa')}"/>
+                    <p th:remove="tag" th:utext="${(sizestatus.index+1)%4==0 ? '&lt;tr&gt;':''}"/>
+                </th:block>
+            </tr>
+        </table><br/>
+    数量：<input type="number" name="g_num"
+              min="1"
+              max="50"
+              step="1"
+              value="1">
+        　　库存：<span th:id="numa" ></span>
+    <div class="t1_5">
+        <input type="submit" class="submit2" formaction="/demo1/myorder/insertd" value="立即购买"/>　　　　　
+        <input type="submit" class="submit2" formaction="/demo1/cart/insert" value="加入购物车"/>
+    </div>
+    </form>
+</div>
+<span hidden id="kkk" th:value="${result}">aaa</span>
+<input type = "hidden" id = "sss" th:value = "${sizelist}"/>
+</body>
+</div>
+<script type="text/javascript">
+    window.onload=function () {
+        var a=document.getElementById("kkk").getAttribute("value");
+        if(a!=null&&a!="")
+        {
+            if(a=="addsuccess") {
+                alert("添加购物车成功！");
+            }
+            else if(a=="addfail"){
+                aler("添加购物车失败");
+            }
+            else{
+                alert(a);
+            }
+
+        }
+    }
+    function click1(isindex0)
+    {
+        var isindex1=isindex0.value;
+        var gindex="gp"+isindex1;
+        var gindex1="gn"+isindex1;
+       // alert(isindex1);
+        var price1=document.getElementById(gindex).getAttribute("value");
+        var num1=document.getElementById(gindex1).getAttribute("value");
+        var text1=document.getElementById("price");
+        var text2=document.getElementById("numa");
+        //var goods2='${goods}';
+        //var ccc=goods2.getG_id();
+       //alert(ccc);
+        text1.innerHTML=price1;
+        text2.innerText=num1;
+    }
+</script>
+</html>

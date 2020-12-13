@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册成功</title>
+    <script type="text/javascript">
+
+        window.onload = function(){
+            var i = 10;
+            var out=document.getElementById('out');
+            var timer = setInterval(function(){
+                if(i== -1){
+                    clearInterval(timer);
+                    window.location.replace("/demo1/");
+                }else{
+                    out.innerHTML=i+"秒";
+                    --i;
+                }
+            },1000);
+        }
+
+    </script>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+    }
+    body
+    {
+        margin:0px auto;
+        text-align:center;
+    }
+
+    text{
+        color: #96bde2;
+        font-size: 250%;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+
+</style>
+<div id="main">
+<body>
+<top>
+    <img  src="tp\LOGO.jpg" width="1250" />
+</top>
+
+<img  src="tp\mid3.png" width="500" />
+<hr>
+<img  src="tp\tubiao2.svg" width="200" /><br>
+<text>恭喜你！注册成功</text><br>
+<a id="out"></a>
+后自动跳转至登陆页面
+
+
+</body>
+</div>
+</html>

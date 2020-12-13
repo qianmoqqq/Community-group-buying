@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>收藏夹</title>
+</head>
+<style>
+    .top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+
+    }
+    .d
+    {
+        width: 1250px;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 130px;
+    }
+    .d4
+    {
+        margin-right: 200px;
+        margin-left: 200px;
+        border:1px solid #ff0000;
+        float: left;
+        width: 1100px;
+        margin-top: 30px;
+    }
+    .d6
+    {
+        display: block;
+        height: 350px;
+        width: 200px;
+        float: left;
+        text-align: center;
+
+    }
+    .d6:hover
+    {
+        border:1px solid red;
+    }
+    .d7
+    {
+        margin-top: 0px;
+        float: left;
+        width: 200px;
+        height: 50px;
+        color: black;
+    }
+    .d8
+    {
+        text-align: right;
+        margin-top: 0px;
+        float: left;
+        width: 200px;
+        height: 40px;
+        color: #ff6630;
+        font-size: 25px;
+    }
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #b6b6b6;
+    }
+    .l
+    {
+        float: right;
+    }
+    .l a
+    {
+        display: block;
+        color: #000000;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .l a:hover
+    {
+        background-color: black;
+        color: white;
+    }
+    .table
+    {
+        margin:0px auto;
+        border-spacing: 50px 20px;
+        height: 400px;
+        width: 1102px;
+    }
+    #main{
+        width:1440px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+</style>
+<body>
+<div id="main">
+    <div class="top">
+        <img  src="\demo1\tp\LOGO.jpg"  width="1250"height="180" />
+    </div>
+    <div class="d">
+        <ul>
+            <li class="l"><a href="#">联系客服</a></li>
+            <li class="l"><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+            <li class="l"><a href="/demo1/favor/select">收藏夹</a></li>
+            <li class="l"><a href="/demo1/cart/find">购物车</a></li>
+            <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+            <li class="l"><a href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+            <li class="l"><a href="/demo1/main1">首页</a></li>
+        </ul>
+    </div>
+    <div class="d4">
+        <table class="table"><tr >
+            <th:block th:each="goods,goodsstatus:${goodslist}">
+                <p th:remove="tag" th:utext="${(goodsstatus.index+1)%4==1 ? '&lt;tr&gt;':''}"/>
+                <td><a th:href="@{'/goods/select_by_id?g_id='+${goods.g_id}}"><div class="d6"><img th:src="@{${goods.g_pic}}" width="200" height="250">
+                    <div class="d7"th:text="${goods.g_name}"></div>
+                    <div class="d8"th:text="${goods.g_lowprice}"></div></div></a></td>
+                <p th:remove="tag" th:utext="${(goodsstatus.index+1)%4==0 ? '&lt;tr&gt;':''}"/>
+            </th:block>
+        </tr>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

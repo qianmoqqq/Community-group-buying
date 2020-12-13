@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车页面</title>
+    <script th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<style>
+    top
+    {
+        margin-left: 20px;
+        margin-right: 70px;
+        height: 180px;
+    }
+    .d
+    {
+        margin-top: 0px;
+        margin-left: 70px;
+        margin-right: 70px;
+        width: 1250px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #8b6b6b;
+        margin-top: 0px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    body
+    {
+        margin:0px auto;
+        text-align:center;
+    }
+
+    li a:hover {
+        background-color: #000000;
+    }
+
+    #tr1{
+        background-color:antiquewhite;
+    }
+
+    #tr2{
+        background-color:aliceblue;
+    }
+    .h2
+    {
+        background-color: #9fe080;
+    }
+
+    .h1{
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    table{
+        margin-left: 70px;
+        width: 1250px;
+    }
+    table.ex1
+    {
+        table-layout:fixed
+    }
+    input[type=button],.submit {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=button],.submit:hover {
+        background-color: #45a049;
+    }
+    #main
+    {
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+        border:1px solid red;
+    }
+
+
+</style>
+<script type="text/javascript">
+    window.onload = function() {
+        var btn = document.getElementById("all");
+        btn.onclick = function() {
+            var flag = this.checked;
+            var items = document.getElementsByName("ckbx+${cartStat.index}");
+            for (var i = 0; i < items.length; i++) {
+                items[i].checked = flag;//将所有item的状态设为全选按钮的状态
+            }
+        }
+
+
+        var items = document.getElementsByName("ckbx+${cartStat.index}");
+        for (var i = 0; i < items.length; i++) {
+            items[i].onclick = function() {//对每个item设置点击
+                var number = 0;//记录选中的个数
+                for (var j = 0; j < items.length; j++) {
+                    if (items[j].checked) {
+                        number++;
+                    }
+                }
+                document.getElementById("all").checked = (items.length == number);
+            }
+        }
+    }
+</script>
+<body>
+<div id="main">
+<top>
+    <img  src="\demo1\tp\LOGO.jpg" width="1250" />
+</top>
+<div class="d">
+<ul>
+    <li><a href="#servicer">联系客服</a></li>
+    <li><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+    <li><a href="/demo1/favor/select">收藏夹</a></li>
+    <li><a href="/demo1/cart/find">购物车</a></li>
+    <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+    <li><a class="active" href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+    <li class="l"><a href="/demo1/main1">首页</a></li>
+</ul>
+</div>
+<div class="h1">
+    <form action="/demo1/myorder/order1" method="post">
+    <table class="table">
+        <th:block th:each="cart,cartStat:${cartlist}">
+            <tr id="tr1">
+                <th>商家</th>
+                <th>图片</th>
+                <th width="25%">商品</th>
+                <th>规格</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>总计</th>
+
+                <th></th>
+            </tr>
+        <tr id="tr2" th:each="array1,array1Stat:${arrays.get(cartStat.index)}" >
+            <td th:text="${cart.getS_name()}"></td>
+           <td><img th:src="@{${arrays.get(cartStat.index).get(array1Stat.index).getG_pic()}}"  width="130" height="130"></td>
+            <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_name()}"></td>
+            <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_size()}"></td>
+            <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_price()}"></td>
+            <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_num()}"></td>
+            <td th:text="${arrays.get(cartStat.index).get(array1Stat.index).getG_price()*arrays.get(cartStat.index).get(array1Stat.index).getG_num()}"></td>
+           <!-- <td><a href="http://www.baidu.com"><input type="button" value="收藏" name="submit" width="100px"></a></td>-->
+            <td><a href="http://www.baidu.com"><input type="button" value="删除" name="submit" width="100px"></a></td>
+
+        </tr>
+        </th:block>
+        <tr class="h2">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>合计：<span th:text="${sumprice}"></span></td>
+            <td></td><td><input class="submit" type="submit" value="结算" name="submit" style="width:120px"></td>
+
+            <td></td>
+
+    </table>
+    </form>
+
+</div>
+</div>
+</body>
+</html>

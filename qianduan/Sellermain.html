@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>卖家首页</title>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #9092d2;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 66px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: #0f4fac;
+    }
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+    .ellipse{
+        width: 180px;
+        height: 90px;
+        margin: 40px;
+        background: #FFD900;
+        border-radius: 50% / 50%;
+    }
+    .p{
+        font-size: 20px;
+        color: black;
+        padding: 10px 13px;
+        margin:8px 0;
+    }
+    .p1{
+        height: 80px;
+        width: 1000px;
+        text-align: center;
+        margin: 0px auto;
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<div id="main">
+<body>
+<top>
+    <img  src="\demo1\tp\sellertop.png" width="1250" />
+</top>
+<div>
+    <ul>
+        <li><a href="#servicer">联系客服</a></li>
+        <li><a href="/demo1/myorder/find_by_s_id">订单管理</a></li>
+        <li><a href="/demo1/addgoods">上架商品</a></li>
+        <li><a href="/demo1/goods/findbys_id">商品管理</a></li>
+        <li class="l"><a href="/demo1/logout2">退出登陆</a></li>
+        <li><a class="active" th:text="'你好商户：'+${session.seller.s_name}"href="/demo1/seller3">你好商户</a></li>
+        <li><a href="/demo1/main2">首页</a></li>
+    </ul>
+</div>
+<div class="p1">
+<div class="ellipse">
+    <a class="p" href="/demo1/addgoods">上架商品</a>
+</div>
+<div class="ellipse">
+    <a class="p" href="/demo1/goods/findbys_id">商品管理</a>
+</div>
+<div class="ellipse">
+    <a class="p" href="/demo1/myorder/find_by_s_id">订单管理</a>
+</div>
+<div class="ellipse">
+    <a class="p" href="/demo1/seller3">商家信息</a>
+</div>
+</div><span hidden id="kkk" th:value="${errors}">aaa</span>
+</body>
+</div>
+<script type="text/javascript">
+    window.onload=function () {
+        var a=document.getElementById("kkk").getAttribute("value");
+        if(a=="addsuccess")
+        {
+            alert("添加商品成功！");
+        }
+        else if(a=="updatesuccess")
+        {
+            alert("更新信息成功");
+        }
+       // if(a!=null&&a!="")
+     //   {
+       //     alert(a);
+      //  }
+    }
+</script>
+</html>

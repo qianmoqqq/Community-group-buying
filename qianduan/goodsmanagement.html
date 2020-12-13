@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+</head>
+<style>
+    #b1{}
+    #a{ }
+    #b{ display: none}
+    #c{ display: none}
+    #d{ display: none}
+    #e{ display: none}
+    #f{ display: none}
+    #g{ display: none}
+    .top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+
+    }
+    .d
+    {
+        background-color: #d5d5d5;
+        width: 300px;
+        height: 560px;
+        margin-left: 125px;
+        float: left;
+
+    }
+    .d1
+    {
+        text-align: right;
+        width: 300px;
+        height: 40px;
+        float: left;
+        background-color: #e7e7e7;
+    }
+    .d2
+    {
+        text-align: center;
+        margin-top: 0px;
+        width: 300px;
+        float: left;
+        height: 55px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .d3
+    {
+        margin-top: 0px;
+        width: 300px;
+        float: left;
+
+
+    }
+    .d4
+    {
+        border:1px solid #e80c0c;
+        margin-top: 0px;
+        margin-left: 0px;
+        width: 950px;
+        float: left;
+        height: 560px;
+        background-color: #fdf8f7;
+    }
+    .d5
+    {
+        margin-left: 50px;
+        margin-right: 50px;
+        width: 850px;
+        height: 300px;
+        float: left;
+        text-align: center;
+        font-size: 25px;
+        padding-top: 100px;
+        color: #ff6630;
+    }
+    .d6
+    {
+        margin-left: 50px;
+        margin-right: 50px;
+        width: 850px;
+        float: left;
+        text-align: center;
+    }
+    .d7
+    {
+        border:1px solid #21201f;
+        float: left;
+        width: 300px;
+        height: 500px;
+        text-align: center;
+    }
+    .d8
+    {
+        margin-left: 50px;
+        border:1px solid #21201f;
+        float: left;
+        width: 530px;
+        text-align: center;
+    }
+    .d9
+    {
+        margin-top: 100px;
+        border:1px solid #21201f;
+        float: left;
+        width: 530px;
+        text-align: center;
+        color: #ff6630;
+        font-size: 25px;
+
+    }
+    .d10
+    {
+        margin-top: 100px;
+        margin-bottom: 20px;
+        border:1px solid #21201f;
+        float: left;
+        width: 530px;
+        text-align: center;
+        color: #ff6630;
+        font-size: 25px;
+
+    }
+    .d11
+    {
+        position: absolute;
+        margin-top: 20px;
+        margin-left: 100px;
+        opacity:0.5;
+    }
+    .d12
+    {
+        border:1px solid #ec0505;
+        margin-left: 50px;
+        margin-right: 50px;
+        width: 550px;
+        height: 200px;
+        float: right;
+    }
+    .d13
+    {
+        border:1px solid #ec0505;
+        margin-left: 100px;
+        margin-right: 50px;
+        float: left;
+        width: 800px;
+        height: 200px;
+        text-align: center;
+        margin-top: 30px;
+
+    }
+    .d14
+    {
+        border:1px solid #ec0505;
+        margin-left: 100px;
+        margin-top: 0;
+        width: 800px;
+        text-align: center;
+    }
+    .text
+    {
+        width: 300px;
+        height: 50px;
+        border:1px solid #e8e7e7;
+    }
+    .text:hover
+    {
+        border-color: #ff6630;
+    }
+    .text1
+    {
+        border:1px solid #e8e7e7;
+    }
+    .text1:hover
+    {
+        border-color: #ff6630;
+    }
+    .text2
+    {
+        width: 300px;
+        height: 40px;
+        border:1px solid #e8e7e7;
+    }
+    .text2
+    {
+        border-color: #ff6630;
+    }
+    .submit
+    {
+        border:1px solid #ff6630;
+        width: 200px;
+        height: 50px;
+        background-color: #FFFFFF;
+        color: #ff6630;
+    }
+    .submit:hover
+    {
+        background-color: #ff7d52;
+        color: #FFFFFF;
+    }
+    .button
+    {
+        border:1px solid #ff6630;
+        width: 80px;
+        height: 30px;
+        background-color: #FFFFFF;
+        color: #ff6630;
+    }
+    .button:hover
+    {
+        background-color: #ff7d52;
+        color: #FFFFFF;
+    }
+    .ul1
+    {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #eaeaea;
+        text-align: center;
+    }
+    .l1
+    {
+
+    }
+    .l1 a
+    {
+        display: block;
+        color: #000000;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .l1 a:hover
+    {
+        background-color: black;
+        color: white;
+    }
+    .table
+    {
+        width: 300px;
+        text-align: center;
+        float: left;
+        border-spacing: 10px 20px;
+    }
+    .td
+    {
+        float: right;
+    }
+    .file
+    {
+        height:150px;
+        width: 150px;
+        opacity:0;
+        cursor:pointer;
+    }
+    .a
+    {color: #2c38b6}
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+
+</style>
+<script language="javascript">
+    function upload(obj)
+    {
+        var img = document.getElementById("showImg");
+        let file = obj.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(){
+            img.setAttribute("src", this.result);
+        }
+    }
+    function showhidediv(id,id2,id3,id4,id5,id6,id7)
+    {
+        var sbtitle=document.getElementById(id);
+        var sbtitle2=document.getElementById(id2);
+        var sbtitle3=document.getElementById(id3);
+        var sbtitle4=document.getElementById(id4);
+        var sbtitle5=document.getElementById(id5);
+        var sbtitle6=document.getElementById(id6);
+        var sbtitle7=document.getElementById(id7);
+        if(sbtitle)
+        {
+            if(sbtitle.style.display=='block')
+            {
+            }
+            else{
+                sbtitle.style.display='block';
+                sbtitle2.style.display='none';
+                sbtitle3.style.display='none';
+                sbtitle4.style.display='none';
+                sbtitle5.style.display='none';
+                sbtitle6.style.display='none';
+                sbtitle7.style.display='none';
+            }
+        }
+    }
+    function buttonclick(id)
+    {
+        var sbtitle=document.getElementById(id);
+        {
+            sbtitle.style.backgroundColor="#ff0000";
+        }
+    }
+    function func(id1,id2,id3,id4)
+    {
+        var sbtitle=document.getElementById(id1);
+        var sbtitle2=document.getElementById(id2);
+        var sbtitle3=document.getElementById(id3);
+        var sbtitle4=document.getElementById(id4);
+        if(sbtitle) {
+            if (sbtitle.style.display == 'block') {
+            } else {
+                sbtitle.style.display = 'block';
+                sbtitle2.style.display = 'none';
+                sbtitle3.style.display = 'none';
+                sbtitle4.style.display = 'none';
+            }
+        }
+    }
+</script>
+<body>
+<div id="main">
+<div class="top">
+    <img  src="\demo1\tp\LOGO.jpg"  width="1250"height="180" />
+</div>
+<div class="d">
+    <div class="d1">
+       <a href="/demo1/logout3" style="float: left">退出登陆</a>
+        <span th:text="${session.user.getU_name()}"></span>管理员，你好
+
+    </div>
+    <div class="d2">
+        用户管理
+    </div>
+    <div class="d3">
+        <ul class="ul1">
+            <li class="l1"><a onmouseover='showhidediv("a","b","c","d","e","f","g")';>用户管理</a></li>
+            <!--<li class="l1"><a onmouseover='showhidediv("b","a","c","d","e","f","g")';>通知公告</a></li>-->
+        </ul>
+    </div>
+    <div class="d2">
+        商家管理
+    </div>
+    <div class="d3">
+        <ul class="ul1">
+            <!--<li class="l1"><a onmouseover='showhidediv("c","b","a","d","e","f","g")';>添加商品状态</a></li>
+            <li class="l1"><a onmouseover='showhidediv("d","b","c","a","e","f","g")';>添加商品状态</a></li>
+            <li class="l1"><a onmouseover='showhidediv("e","b","c","d","a","f","g")';>添加商品种类</a></li>-->
+            <li class="l1"><a onmouseover='showhidediv("f","b","c","d","e","a","g")';>商家管理</a></li>
+
+        </ul>
+    </div>
+    <div class="d2">
+        商品管理
+    </div>
+    <div class="d3">
+        <ul class="ul1">
+            <li class="l1"><a onmouseover='showhidediv("g","b","c","d","e","f","a")';>商品管理</a></li>
+
+        </ul>
+    </div>
+    <div class="d2">
+        订单管理
+    </div>
+    <div class="d3">
+    <ul class="ul1">
+    <li class="l1"><a onmouseover='showhidediv("e","b","a","d","c","f","g")';>订单管理</a>
+    </li></ul></div>
+</div>
+<form action="" method="post">
+<div  id="a" class="d4">
+    <div class="d5">
+    输入查询的用户：<input type="text" name="search"  class="text" placeholder="用户id"/>
+    </div>
+    <div class="d6">
+        <input type="button" value="确定" class="submit" onclick=""/>
+    </div>
+</div>
+<div  id="b" class="d4" >
+    <div class="d7">
+        <table class="table"><tbody><tr>
+            <td><input  id="b1" type="button" name="u_type" value="标签" class="button" onclick="buttonclick(b1)"/></td>
+            <td><input type="button" name="u_type" value="标签" class="button"/></td>
+            <td><input type="button" name="u_type" value="标签" class="button"/></td>
+        </tr>
+        <tr>
+            <td><input type="button" name="u_type" value="标签" class="button"/></td>
+            <td><input type="button" name="u_type" value="标签" class="button"/></td>
+            <td><input type="button" name="u_type" value="标签" class="button"/></td>
+        </tr></tbody></table>
+
+    </div>
+    <div class="d8">
+        <div class="d9">
+            收件人：<input type="text" name="search"  class="text" placeholder="用户id/手机号/邮箱号"/>
+        </div>
+        <div class="d10">
+            编辑内容：<textarea  class="text1" name="text" cols="50" rows="10"></textarea>
+        </div>
+        <input type="submit" value="确定" class="submit"/>
+    </div>
+</div>
+</form>
+<form action="" method="post">
+<div  id="c" class="d4">
+    <div class="d11">
+    <img src="tp/add.jpg" alt="代替input的图片" id="showImg" style="width:150px">
+    </div>
+    <div class="d11">
+    <input type="file" class="file" name="g_pic" id="" onchange="upload(this)" />
+    </div>
+    <div class="d12">
+        <table style="margin-left: 30px"><tbody><tr>
+            <td class="td">商品名：</td><td><input  class="text2" type="text" name="g_name"/></td>
+        </tr>
+        <tr>
+            <td class="td">颜色：</td><td><input  class="text2" type="text" name="g_type"/></td>
+        </tr>
+        <tr>
+            <td class="td">尺寸：</td><td><input  class="text2" type="text" name="g_size"/></td>
+        </tr>
+        <tr>
+            <td class="td">库存：</td><td><input  class="text2" type="text" name="g_number"/></td>
+        </tr>
+        </tbody></table>
+    </div>
+    <div class="d13">
+        简介：<textarea  class="text1" name="g_intro" cols="50" rows="10"></textarea>
+    </div>
+    <div class="d14">
+    <input type="submit" class="submit">
+    </div>
+</div>
+<div  id="d" class="d4">
+
+</div>
+
+
+</form>
+<form action="" method="post">
+
+    <div  id="f" class="d4">
+        <div class="d5">
+            输入查询的商家：<input type="text" name="search"  class="text" placeholder="商家id"/>
+        </div>
+        <div class="d6">
+            <input type="button" value="确定" class="submit" onclick=""/>
+        </div>
+    </div>
+    <div  id="g" class="d4">
+        <div class="d5">
+            输入查询的商品：<input type="text" name="search"  class="text" placeholder="商品id"/>
+        </div>
+        <div class="d6">
+            <input type="submit" value="确定" class="submit"/>
+        </div>
+    </div>
+    <div  id="e" class="d4">
+        <div class="d5">
+            输入查询的订单：<input type="text" name="search"  class="text" placeholder="订单号"/>
+        </div>
+        <div class="d6">
+            <input type="submit" value="确定" class="submit"/>
+        </div>
+    </div>
+    <div id="a1" class="d4">
+        <table><tr>
+            <th>用户姓名</th>
+            <th>用户性别</th>
+            <th>用户年龄</th>
+            <th>用户电话</th>
+        </tr>
+        <tr th:each="order1,order1stat:${userlist1}">
+
+        </tr></table>
+
+    </div>
+    <div id="ff" class="d4">
+        <table><tr>
+            <th>商家名称</th>
+            <th>经营种类</th>
+            <th>商家评分</th>
+            <th>商家电话</th>
+        </tr>
+            <tr th:each="order1,order1stat:${userlist1}">
+
+            </tr></table>
+    </div>
+    <div id="gg" class="d4">
+        <table><tr>
+            <th>商品名称</th>
+            <th>商品种类</th>
+            <th>商品图片</th>
+            <th>商品价格</th>
+        </tr>
+            <tr th:each="order1,order1stat:${userlist1}">
+
+            </tr></table>
+    </div>
+    <div id="ee" class="d4">
+        <table><tr>
+            <th>买家id</th>
+            <th>卖家id</th>
+            <th>商品描述</th>
+            <th>订单金额</th>
+        </tr>
+            <tr th:each="order1,order1stat:${userlist1}">
+
+            </tr></table>
+    </div>
+</form>
+</div>
+</body>
+</html>

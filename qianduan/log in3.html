@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <style>
+        .top
+        {
+            margin-left: 125px;
+            margin-right: 125px;
+
+        }
+        photo
+        {
+            text-align: left;
+            float:left;
+            width: 24000px;
+            animation: switch 5s ease-out infinite;
+        }
+        .t
+        {
+            position: absolute;
+            right: 30px;
+            float:left;
+            margin-left: 125px;
+            margin-right: 125px;
+            width: 450px;
+            height: 470px;
+            overflow: hidden;
+            text-align: center;
+
+        }
+        .p
+        {
+            position: absolute;
+            left: 8px;
+            float:left;
+            margin-left: 125px;
+            margin-right: 125px;
+            border:1px solid red;
+            width: 790px;
+            height: 470px;
+            overflow: hidden;
+        }
+        table
+        {
+            margin:0px auto;
+            color: #8b8b8b;
+            font-size: 18px;
+            border-collapse: separate;
+            border-spacing: 10px 20px;
+
+        }
+        .r
+        {
+            text-align: right;
+            font-size: 14px;
+        }
+        .z
+        {
+
+            margin-bottom: 20px;
+            text-decoration:none;
+            color: orangered;
+            font-size: 14px;
+        }
+        .text1
+        {
+            width:100px;height:30px;
+        }
+        .text2
+        {
+            width:200px;height:30px;
+        }
+        .submit
+        {
+            width:150px;
+            height: 40px;
+            background-color: #4884a5;
+            color: #ffffff;
+            font-size: 16px;
+            border:1px solid #b15656;
+
+        }
+        .submit:hover
+        {
+            background-color: #0e6361;
+            color: #ffffff;
+        }
+        .submit:active
+        {
+            width:120px;
+            height: 30px;
+            background-color: #ffffff;
+            color: #ff6630;
+        }
+
+
+        input[type=pwd]{width:100px;height:30px;}
+        input[type=text]:focus
+        {
+            border-color: #bababa;
+
+        }
+        input[type=text]::selection
+        {
+            border-color: #96bde2;
+        }
+        input[type=password]:focus
+        {
+            border-color: #bababa;
+
+        }
+        input[type=password]:focus
+        {
+            border-color: #96bde2;
+
+        }
+
+
+        @keyframes switch
+        {
+            0%, 25% {
+                margin-left: 0;
+            }
+            35%, 60% {
+                margin-left: -810px;
+            }
+            70%, 100% {
+                margin-left: -1620px;
+            }
+        }
+        h1{color: #000000
+        }
+        h4{color: #ff4500
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+    <img  src="\demo1\tp\LOGO.jpg" class="top" width="1250" />
+
+
+<div class="p">
+    <photo>
+    <img  src="\demo1\tp\cm.jpg" width="800" height="470" />
+    <img  src="\demo1\tp\ha.jpg" width="800" height="470" />
+    <img  src="\demo1\tp\kfc.jpg" width="800" height="470" />
+    </photo>
+</div>
+
+<div class="t">
+   <h1> 管理员登录</h1><br>
+    <form action="/demo1/login/loginbypwd" method="post">
+<input type="hidden" name="logrole" id="logrole" value="3"/>
+
+        <table><tbody><tr>
+            <td>用户名</td><td><input type="text" class="text2" placeholder="请输入管理员用户名" name="logid"/></td>
+        </tr>
+        <tr>
+            <td>密码</td> <td><input type="password"  class="text2" placeholder="请输入密码"  name="logpwd"/></td>
+        </tr>
+            <!--<tr>
+                <td></td><td><input type="text" class="text1" placeholder="验证码" name="u_id"/></td><td></td>
+            </tr>
+            -->
+            <tr>
+                <td></td><td class="r"><a href="www.baidu.com" >忘记密码</a></td>
+
+            </tr></tbody></table>
+
+        <table><tbody><tr>
+            <td><input type="submit" class="submit" value="确定" /></td>
+        </tr>
+        </tbody></table>
+
+    </form>
+</div>
+    <span hidden id="kkk" th:value="${errors}">aaa</span>
+</body>
+<script type="text/javascript">
+    window.onload=function () {
+        var a=document.getElementById("kkk").getAttribute("value");
+        if(a!=null&&a!="")
+        {
+            alert(a);
+        }
+    }
+</script>
+</html>

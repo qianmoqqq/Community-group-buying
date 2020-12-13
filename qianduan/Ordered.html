@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>订单成功页面</title>
+</head>
+<style>
+    top
+    {
+        margin-left: 125px;
+        margin-right: 125px;
+        height: 180px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #8b6b6b;
+        margin-top: 0px;
+        margin-left: 125px;
+        margin-right: 66px;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    body
+    {
+
+
+    }
+
+    li a:hover {
+        background-color: #000000;
+    }
+
+    .h1{
+        background: #cbcbcb;
+        margin-top: 100px;
+        margin-right: 125px;
+        margin-left: 125px;
+        width: 1250px;
+    }
+    p{
+        text-align: left;
+
+    }
+    p1{
+        margin-left: 20px;
+
+    }
+
+    input[type=submit] {
+        width: 20%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 13px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+    .table
+    {
+        color: #000000;
+        font-size: 18px;
+        width: 1250px;
+        border-spacing: 0px 20px;
+        border:1px solid #000000;
+    }
+
+    #main{
+        width:1440px;
+        height: 900px;
+        MARGIN-RIGHT:auto;
+        MARGIN-LEFT:auto;
+    }
+
+</style>
+<div id="main">
+<body>
+<top>
+    <img  src="\demo1\tp\LOGO.jpg" width="1250" />
+</top>
+<div>
+    <ul>
+        <li><a href="#servicer">联系客服</a></li>
+        <li><a href="/demo1/myorder/find_by_u_id">我的订单</a></li>
+        <li><a href="/demo1/favor/select">收藏夹</a></li>
+        <li><a href="/demo1/cart/find">购物车</a></li>
+        <li class="l"><a href="/demo1/logout1">退出登陆</a></li>
+        <li><a class="active" href="/demo1/user1"th:text="${session.user.getU_id()}+',你好'">你好</a></li>
+        <li class="l"><a href="/demo1/main1">首页</a></li>
+    </ul>
+</div>
+<div class="h1">
+    <table class="table">
+        <th:block th:each="order,orderStat:${myorderlist}">
+            <tr id="tr1">
+                <th>订单号</th>
+                <th>收货地址</th>
+                <th width="25%">实付款</th>
+            </tr>
+            <tr>
+                <td th:text="${order.o_id}"></td>
+                <td th:text="${order.o_address}"></td>
+                <td th:text="${order.o_sum}"></td>
+            </tr>
+        </th:block>
+    </table>
+
+</div>
+</body>
+</div>
+</html>
